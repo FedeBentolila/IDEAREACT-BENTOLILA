@@ -11,7 +11,7 @@ function App() {
       <header className="App-header">
       <NavBar/>
       </header>
-      <ItemListContainer greeting="Bienvenidos a la tienda de insumos para endoscopía digestiva"/>  
+      <ItemListContainer />  
 
     </div>
   );

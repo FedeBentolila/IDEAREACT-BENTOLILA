@@ -1,22 +1,20 @@
 import './ItemListContainer.css';
-import ItemCount from '../ItemCount/ItemCount';
+import ItemList from '../ItemList/ItemList'
 
-const ItemListContainer =({greeting})=>{
+const ItemListContainer =()=>{
 
-    const onAdd = (qty) => {
-        alert(`Agregaste ${qty} productos`);
-      };
 
     return (
         <div className="ItemListContainer">
 
-            <div className="Greeting">
-                <h1>{greeting}</h1>
-            </div>
-
+            
+            <h2 className="item-list-container__title">Productos en Venta</h2>
             <>
-            <ItemCount onAdd={onAdd} initial={1} stock={7} />
+            <ItemList/>
             </>
+            
+
+            
 
         </div>
 
