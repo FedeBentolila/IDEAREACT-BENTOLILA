@@ -11,6 +11,8 @@ const productList = [
       thumbnail: imgaguja,
       stock: 7,
       id: 1,
+      brand: 'Cook',
+      type: 'Descartable',
     },
     {
       name: 'Ansa para endoscopía',
@@ -18,6 +20,8 @@ const productList = [
       thumbnail:imgansa,
       stock: 10,
       id: 2,
+      brand: 'Microtech',
+      type: 'Re Utilizable',
     },
     {
       name: 'Clip hemostático',
@@ -25,6 +29,8 @@ const productList = [
       thumbnail: imgclip,
       stock: 6,
       id: 3,
+      brand: 'Microtech',
+      type: 'Descartable',
     },
   ];
 
