@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Item from '../Item/Item';
 import productList from '../MockData/MockData';
 
 import './ItemList.css';
 
 const ItemList = () => {
+
+  const {categoryId}= useParams();
   
   const [products, setProducts] = useState([]);
 
@@ -17,11 +20,16 @@ const ItemList = () => {
   });
 
   useEffect(()=> {
-    getProducts.then((result)=> {
-      setProducts(result);
+    getProducts.then(result=> {
+      if(categoryId){
+      const newProducts = result.filter(item=>item.category === categoryId);
+      setProducts(newProducts)}
+      else{
+        setProducts(result);
+      }
     } 
     )
-  })
+  }, [categoryId]) 
 
   return (
     <div className="product-list-container">

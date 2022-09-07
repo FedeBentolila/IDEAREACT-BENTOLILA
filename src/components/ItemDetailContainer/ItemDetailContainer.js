@@ -1,57 +1,57 @@
 import { useEffect, useState } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import productList from '../MockData/MockData';
+import { useParams } from 'react-router-dom';
 
 import '../Item/Item.css';
 
 const ItemDetailContainer = () => {
+
+  const {productId}= useParams();
+
   
   const [products, setProducts] = useState([]);
 
-  const getProducts = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      
-        resolve(productList);
-      
-    }, 2000);
-  });
+  const getProduct = (id) => { 
+        return new Promise((resolve, reject) => {
+    
+        const item = productList.find(item=>item.id === parseInt (id));
+        resolve(item); 
+    
+  })}
 
   useEffect(()=> {
-    getProducts.then((result)=> {
-      setProducts(result);
-    } 
-    )
-  })
+    const getproducto= async()=>{
+      const producto= await getProduct(productId);
+      setProducts(producto);
+
+      
+  
+
+    }
+    getproducto();
+
+  }, [productId]) 
+
+  console.log(products)
+  
 
   return (
     <div className="product-list-container">
-      {
-        
-        products.length ? ( 
-          <>
-            {
-              
-              products.map((product) => {
-                
-                return (
+      
+         
                   <ItemDetail
-                    key={product.id}
-                    name={product.name}
-                    thumbnail={product.thumbnail}
-                    price={product.price}
-                    stock={product.stock}
-                    id={product.id}
-                    brand={product.brand}
-                    type={product.type}
+                    key={products.id}
+                    name={products.name}
+                    thumbnail={products.thumbnail}
+                    price={products.price}
+                    stock={products.stock}
+                    id={products.id}
+                    brand={products.brand}
+                    type={products.type}
                   />
-                );
-              })
-            }
-          </>
-        ) : (
-          <p>Cargando productos...</p>
-        ) 
-      }
+      
+       
     </div>
   );
 };
