@@ -1,12 +1,14 @@
 import iconocart from '../CartWidget/carticon.png'
+import { Link } from 'react-router-dom';
 
 const CartWidget =()=>{
     return (
         <div className="CartWidget">
-
-            <div className="IconoCart">
+            <Link to="/cart" className="IconoCart">
+           
             <img src={iconocart} width={'100px'} alt="Icono del carrito"/>
-            </div>
+            
+            </Link>
 
         </div>
 

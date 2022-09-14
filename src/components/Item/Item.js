@@ -1,17 +1,19 @@
 import ItemCount from '../ItemCount/ItemCount.js';
+import { CartContext } from '../../context/CartContext.js';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import './Item.css';
 
 const Item = (product) => {
-
+  const {addItem} = useContext(CartContext);
   const [contador, setContador]= useState(0);
 
 
   const onAdd = (qty) => {
     alert(`Has agregado ${product.name} x ${qty} `);
     setContador(qty)
+    addItem(product, qty)
   };
 
   return (
