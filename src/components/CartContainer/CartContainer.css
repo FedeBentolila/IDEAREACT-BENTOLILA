@@ -1,0 +1,22 @@
+.CartGlobal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.ButtonCart{
+    color: black;
+    margin-top: 20px;
+    width: auto;
+    height: auto;
+    border: 1px solid black;
+    background-color: rgb(99, 205, 205);
+    font-size: 1.6rem;
+    cursor: pointer;
+  
+}
