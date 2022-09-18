@@ -11,7 +11,12 @@ export const CartProvider = ({children})=>{
             let index = productCartList.findIndex(el => el.id === item.id);
             let product = productCartList[index];
             product.quantity = product.quantity + quantity;
-            const newCart = [...productCartList];
+            product.totalprice= product.price* product.quantity;
+            
+            const newCart = [
+                ...productCartList,
+                
+            ];
             newCart.splice( index, 1, product );
 
             setProductCartList([ ...newCart ]);
@@ -19,9 +24,13 @@ export const CartProvider = ({children})=>{
         }
 
         else{
+        
+        const totalprice= item.price* quantity    
         const newProduct= {
             ...item,
-            quantity
+            quantity,
+            totalprice,
+            
         }
         const newArreglo = [...productCartList];
         newArreglo.push(newProduct);
