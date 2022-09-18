@@ -2,6 +2,7 @@ import ItemCount from '../ItemCount/ItemCount.js';
 import { CartContext } from '../../context/CartContext.js';
 import '../Item/Item.css';
 import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 const ItemDetail = (product) => {
   const {addItem} = useContext(CartContext);
@@ -24,6 +25,14 @@ const ItemDetail = (product) => {
       <h3 className="product-card__name">Cantidad agregada: {contador}</h3>
 
       <ItemCount stock={product.stock} onAdd={onAdd} initial={1} />
+
+      { contador > 0 &&
+        <Link to="/cart">
+          <button>Ir al carrito</button>
+        </Link>
+      }
+
+
     </article>
   );
 };

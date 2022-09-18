@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import { CartContext } from "../../context/CartContext";
 import '../CartContainer/CartContainer.css';
 import trash from '../CartContainer/trash.jpg'
+import { Link } from "react-router-dom";
 
 const CartContainer =()=>{
     const {productCartList, removeItem, clear} = useContext(CartContext)
@@ -40,7 +41,13 @@ const CartContainer =()=>{
                     
                     </> 
                     
-                ):("") }
+                ):(
+                    <>
+                    <p className="Finalcompra"> NO HAY ITEMS EN EL CARRITO  </p>
+                    <Link className="VolverAlCatalogo" to='/catalogo/'>Volver al catálogo</Link>
+                    </>
+
+                ) }
                 
 
 
