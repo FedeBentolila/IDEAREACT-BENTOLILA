@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Item from '../Item/Item';
-import productList from '../MockData/MockData';
+//MockList previa: import productList from '../MockData/MockData';
+import { db } from '../../utils/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 import './ItemList.css';
 
@@ -11,12 +13,38 @@ const ItemList = () => {
   
   const [products, setProducts] = useState([]);
 
-  const getProducts = new Promise((resolve, reject) => {
-    setTimeout(() => {
+
+  useEffect(()=> {
+    const getData= async()=>{
+
+      const query= collection(db, "Items");
+      const response= await getDocs(query);
+      const productos= response.docs.map(doc =>{
+        const newProduct={
+          ...doc.data(),
+          id: doc.id
+        }
+        return newProduct
+      }  
+        )   
+        if(categoryId){
+          const newProducts = productos.filter(item=>item.category === categoryId);
+          setProducts(newProducts)}
+          else{
+            setProducts(productos);
+          }
+    }
+    getData();
+
+  }, [categoryId]) 
+
+  
+ /* const getProducts = new Promise((resolve, reject) => {
+    
       
         resolve(productList);
       
-    }, 2000);
+    
   });
 
   useEffect(()=> {
@@ -29,7 +57,7 @@ const ItemList = () => {
       }
     } 
     )
-  }, [categoryId]) 
+  }, [categoryId])  */
 
   return (
     <div className="product-list-container">

@@ -19,7 +19,7 @@ const Item = (product) => {
   return (
     <article className="product-card">
       <Link to={`/product/${product.id}`}>
-        <img className="product-card__image" src={product.thumbnail} alt="${name}" />
+        <img className="product-card__image" src={product.thumbnail} alt={product.name} />
       </Link>
 
       <h3 className="product-card__name">{product.name}</h3>

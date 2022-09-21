@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import productList from '../MockData/MockData';
+/* import productList from '../MockData/MockData'; */
 import { useParams } from 'react-router-dom';
+import { db } from '../../utils/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 import '../Item/Item.css';
 
@@ -12,6 +14,30 @@ const ItemDetailContainer = () => {
   
   const [products, setProducts] = useState([]);
 
+  useEffect(()=> {
+    const getData= async()=>{
+
+      const query= collection(db, "Items");
+      const response= await getDocs(query);
+      const productos= response.docs.map(doc =>{
+        const newProduct={
+          ...doc.data(),
+          id: doc.id
+        }
+        return newProduct
+      }  
+        )   
+        if(productId){
+          const newProducts = productos.find(item=>item.id === productId);
+          setProducts(newProducts)}
+    }
+    getData();
+
+  }, [productId]) 
+
+  /*
+  async mock previo de MockList
+  
   const getProduct = (id) => { 
         return new Promise((resolve, reject) => {
     
@@ -25,15 +51,11 @@ const ItemDetailContainer = () => {
       const producto= await getProduct(productId);
       setProducts(producto);
 
-      
-  
-
     }
     getproducto();
 
-  }, [productId]) 
+  }, [productId])  */
 
-  console.log(products)
   
 
   return (
