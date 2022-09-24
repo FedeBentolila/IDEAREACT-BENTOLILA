@@ -59,3 +59,20 @@
 .trash{
     cursor: pointer;
 }
+
+.Formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+    padding: 60px;
+    background-color: lightgrey;
+    border-radius: 5%;
+    border: solid;
+    width: auto;
+    font-size: 1.6rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+}
