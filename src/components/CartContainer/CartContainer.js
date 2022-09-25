@@ -1,17 +1,15 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import { CartContext } from "../../context/CartContext";
 import '../CartContainer/CartContainer.css';
 import trash from '../CartContainer/trash.jpg';
 import { Link } from "react-router-dom";
 import { db } from '../../utils/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, updateDoc, doc, getDoc, increment } from 'firebase/firestore';
 
 const CartContainer =()=>{
     const {productCartList, removeItem, clear} = useContext(CartContext)
 
     const [idOrder, setIdOrder] = useState("");
-
-   
 
 
     const getTotalPrice=()=>{
@@ -39,14 +37,42 @@ const CartContainer =()=>{
 
     const queryRef= collection(db, "orders");
     addDoc(queryRef, order).then(response=>{
-        console.log("response", response);
-        setIdOrder(response.id)
+        setIdOrder(response.id);
 
         
     });
 
-    console.log(idOrder)
+    upDateStock()
+
+
+    }
+
+    const upDateStock=async ()=>{
+
+        const query= collection(db, "Items");
+        const response= await getDocs(query);
+        const productos= response.docs.map(doc =>{
+          const newProduct={
+            ...doc.data(),
+            id: doc.id
+          }
+          return newProduct
+        }  )     
         
+        const res = productCartList.filter(x => productos.some(y => y.id === x.id));
+
+        const arrayproductoscompradosx = res.map(x => x)
+
+
+        arrayproductoscompradosx.forEach(element => {
+            const query2= doc(db, "Items", element.id);
+            updateDoc(query2,{
+                stock : increment(- element.quantity)
+            })
+        })
+
+        clear()
+
 
     }
 
