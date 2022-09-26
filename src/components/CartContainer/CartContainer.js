@@ -9,7 +9,7 @@ import { collection, addDoc, getDocs, updateDoc, doc, getDoc, increment } from '
 const CartContainer =()=>{
     const {productCartList, removeItem, clear} = useContext(CartContext)
 
-    const [idOrder, setIdOrder] = useState("");
+    const [Order, setOrder] = useState("");
 
 
     const getTotalPrice=()=>{
@@ -37,10 +37,11 @@ const CartContainer =()=>{
 
     const queryRef= collection(db, "orders");
     addDoc(queryRef, order).then(response=>{
-        setIdOrder(response.id);
+        setOrder(response);
 
         
     });
+
 
     upDateStock()
 
@@ -84,9 +85,16 @@ const CartContainer =()=>{
             <div className="CartGlobal">
 
 
-            {idOrder && <p>Su orden fue creada, id {idOrder}</p>}
+            {Order && 
+            
+            <div className="Orden">
+                <p>Su orden fue creada, con el siguiente número de referencia {Order.id}</p>
                 
-
+            </div>
+            
+            
+            
+            }
 
                 {productCartList.map(item=>(
                     <div className="Item">

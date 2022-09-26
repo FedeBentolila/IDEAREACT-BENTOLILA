@@ -1,3 +1,4 @@
+import { increment } from 'firebase/firestore';
 import { useState } from 'react';
 
 import './ItemCount.css';
@@ -5,6 +6,8 @@ import './ItemCount.css';
 const ItemCount = ({ onAdd, initial, stock }) => {
 
   const [qty, setQty] = useState(initial);
+
+  const [stocki, setstocki] = useState(stock);
 
     const addProduct = (num) => {
     setQty(qty + num);
@@ -23,8 +26,11 @@ const ItemCount = ({ onAdd, initial, stock }) => {
         <span className="count-container__qty">{qty}</span>
         <button
           className="count-container__button"
-          onClick={() => addProduct(+1)}
-          disabled={qty === stock}
+          onClick={() => {
+            addProduct(+1)
+            
+          }}
+          disabled={qty === stocki}
         >
           +
         </button>
@@ -33,9 +39,17 @@ const ItemCount = ({ onAdd, initial, stock }) => {
       <button
         className="button-primary"
         onClick={() => {
+          
           onAdd(qty);
+
+          setstocki(stocki- qty)
+        
+
+
+
+
         }}
-        disabled={stock === 0 ? true : null}
+        disabled={stocki < 1 ? true : null}
       >
         Añadir
       </button>
