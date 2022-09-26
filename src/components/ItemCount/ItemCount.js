@@ -30,7 +30,7 @@ const ItemCount = ({ onAdd, initial, stock }) => {
             addProduct(+1)
             
           }}
-          disabled={qty === stocki}
+          disabled={qty >= stocki}
         >
           +
         </button>
@@ -43,6 +43,8 @@ const ItemCount = ({ onAdd, initial, stock }) => {
           onAdd(qty);
 
           setstocki(stocki- qty)
+
+          setQty(initial)
         
 
 
