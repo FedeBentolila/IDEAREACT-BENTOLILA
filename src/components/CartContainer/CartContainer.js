@@ -1,10 +1,10 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useContext, useState} from "react";
 import { CartContext } from "../../context/CartContext";
 import '../CartContainer/CartContainer.css';
 import trash from '../CartContainer/trash.jpg';
 import { Link } from "react-router-dom";
 import { db } from '../../utils/firebase';
-import { collection, addDoc, getDocs, updateDoc, doc, getDoc, increment } from 'firebase/firestore';
+import { collection, addDoc, getDocs, updateDoc, doc, increment } from 'firebase/firestore';
 
 const CartContainer =()=>{
     const {productCartList, removeItem, clear} = useContext(CartContext)

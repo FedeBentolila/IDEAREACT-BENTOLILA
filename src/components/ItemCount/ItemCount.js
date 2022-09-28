@@ -1,4 +1,4 @@
-import { increment } from 'firebase/firestore';
+
 import { useState } from 'react';
 
 import './ItemCount.css';

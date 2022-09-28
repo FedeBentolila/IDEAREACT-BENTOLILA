@@ -8,5 +8,5 @@ Este proyecto está realizado con React Js, y utiliza como base de datos Firesto
 
 ### Ejecución del proyecto
 
-Abrir la App en el modo desarrollador, para ello colocar en la carpeta a través de una terminal npm start. Luego abrir [http://localhost:3000] para verlo en el navegador
+Abrir la App, para ello colocar ,en la carpeta a través de una terminal, npm start. Luego abrir [http://localhost:3000] para verlo en el navegador
 
