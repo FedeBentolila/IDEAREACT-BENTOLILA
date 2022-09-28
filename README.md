@@ -1,4 +1,4 @@
-# Bienvenido a la tienda onlinie de endoscopía
+# Bienvenido a la tienda online de endoscopía
 
 Este proyecto tiene como objetivo presentar un e commerce de endosocopía digestiva médica para una empresa Argentina, ofertando tanto insumos para la actividad entre otros elementos
 
